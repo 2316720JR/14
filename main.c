@@ -3,27 +3,30 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int main(int argc, char *argv[]) 
+struct Book
 {
-	char*pc = NULL;
-	int i = 0;
-	
-	pc = (char*)malloc(100*sizeof(char));
-	
-	if(pc == NULL)
-	{
-		printf("malloc failed\n");
-		exit(1);
-	}
+	int number;
+	char title[10];
+};
 
-	for(i=0;i<26;i++)
+void main(void)
+{
+	struct Book * p;
+	
+	p = (struct Book*)malloc(2*sizeof(struct Book));
+	
+	if (p == NULL)
 	{
-		pc[i] = 'a'+i;
+		printf("failed\n");
+		return;
 	}
 	
-	pc[i] = 0;
-	printf("%s\n", pc);
-	free(pc);
+	p -> number = 1;
+	strcpy(p->title, "C Programming");
 	
-	return 0;
+	(p+1) -> number = 2;
+	strcpy((p+1)->title, "Electronincs");
+	
+	free(p);
+	return;
 }
